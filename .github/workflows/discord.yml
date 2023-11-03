@@ -1,0 +1,28 @@
+name: Discord Webhook
+on:
+  workflow_dispatch:
+    inputs:
+      channel:
+        description: 'The channel to post to'
+        type: string
+        required: true
+      data:
+        description: 'JSON data'
+        type: string
+        required: true
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Post to tower-winners
+        if: ${{ inputs.channel == '#tower-winners' }}
+        run: wget -q -O- --header="Content-Type:application/json" --post-data='${{ inputs.data }}' ${{ secrets.TOWER_WINNERS }}
+      - name: Post to sc-tower-winners
+        if: ${{ inputs.channel == '#sc-tower-winners' }}
+        run: wget -q -O- --header="Content-Type:application/json" --post-data='${{ inputs.data }}' ${{ secrets.SC_TOWER_WINNERS }}
+      - name: Post to record-score
+        if: ${{ inputs.channel == '#record-score' }}
+        run: wget -q -O- --header="Content-Type:application/json" --post-data='${{ inputs.data }}' ${{ secrets.RECORD_SCORE }}
+      - name: Post to ingame-mod-logs
+        if: ${{ inputs.channel == '#ingame-mod-logs' }}
+        run: wget -q -O- --header="Content-Type:application/json" --post-data='${{ inputs.data }}' ${{ secrets.INGAME_MOD_LOGS }}
