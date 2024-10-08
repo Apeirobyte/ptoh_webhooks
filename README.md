@@ -15,7 +15,7 @@ This repository solely exists to let [PToH](https://www.roblox.com/games/7593639
   run: wget -q -O- --header="Content-Type:application/json" --post-data='${{ inputs.data }}' ${{ secrets.<The Secret's Name> }}
 ```
 5. Create a [fine-grained personal access token](https://github.com/settings/tokens?type=beta) and use the following settings:
-   - Expiration: As late as possible
+   - Expiration: As late as possible **(You'll need to remember to create a new token right before the old one expires!)**
    - Repository Access: Only select repositories, select the webhook repository
    - Repository Permissions: Set Actions to Read & Write
 6. Copy the access token that gets generated and save it somewhere safe, because you won't be able to see it again
