@@ -26,3 +26,6 @@ jobs:
       - name: Post to ingame-mod-logs
         if: ${{ inputs.channel == '#ingame-mod-logs' }}
         run: wget -q -O- --header="Content-Type:application/json" --post-data='${{ inputs.data }}' ${{ secrets.INGAME_MOD_LOGS }}
+      - name: Post to all-jump-winners
+        if: ${{ inputs.channel == '#all-jump-winners' }}
+        run: wget -q -O- --header="Content-Type:application/json" --post-data='${{ inputs.data }}' ${{ secrets.ALL_JUMP_WINNERS }}
